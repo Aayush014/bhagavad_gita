@@ -1,11 +1,9 @@
 <div id="top"></div>
 
-<h1 align="center"> PTE 📱 </h1>
-🚀 Transformation of a website into a mobile application for the management of human and material resources. 🌟
+<h1 align="center"> Shrimad Bhagwat Geeta 📱 </h1>
 <br/>
 <h1 align="center"> Screenshot </h1>
 <br/>
-
 <table align="center">
   <tr>
     <td><img src="https://github.com/Aayush014/bhagavad_gita/assets/133498952/2476f64e-3209-4fd9-bf2f-c459e075a488" alt="Image 2" width="180" height="auto"></td>
