@@ -12,6 +12,8 @@ class BhagavadGita extends StatefulWidget {
 class _BhagavadGitaState extends State<BhagavadGita> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.orangeAccent.shade100,
       appBar: AppBar(
@@ -27,8 +29,8 @@ class _BhagavadGitaState extends State<BhagavadGita> {
         alignment: Alignment.topCenter,
         children: [
           Container(
-            height: 300,
-            width: 450,
+            height: height / 3,
+            width: width,
             decoration: BoxDecoration(
               color: Colors.grey,
               borderRadius: BorderRadius.only(
@@ -44,18 +46,19 @@ class _BhagavadGitaState extends State<BhagavadGita> {
                   left: 150,
                   child: Transform.rotate(
                     child: Container(
-                      height: 200,
+                      height: height / 4,
                       child: Image.asset('Assets/Images/mor_pankh.png'),
                     ),
                     angle: pi / 4,
                   ),
                 ),
                 Positioned(
-                  top: 150,
+                  top: 130,
                   left: 110,
                   child: Text(
                     '॥ गीता ॥',
-                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontSize: 50, fontWeight: FontWeight.w600),
                   ),
                 ),
               ],
@@ -66,13 +69,12 @@ class _BhagavadGitaState extends State<BhagavadGita> {
             child: Column(
               children: [
                 Container(
-                  height: 250,
-                  width: 300,
+                  height: height/4,
                 ),
                 Column(
                   children: [
                     Container(
-                      width: 370,
+                      width: width/2.3,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(30),
@@ -84,19 +86,20 @@ class _BhagavadGitaState extends State<BhagavadGita> {
                           18,
                           (index) => GestureDetector(
                             onTap: () {
-                              shlokIndex = index;
-                              Navigator.of(context).pushNamed('shlok');
+                              adhyayIndex = index;
+                              Navigator.of(context).pushNamed('adhyay');
                             },
                             child: adhyay(
                               bg[0][index]['img'],
                               bg[0][index]['name'],
                               bg[0][index]['no'],
+                              context
                             ),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: height/40,),
                   ],
                 ),
               ],
@@ -108,22 +111,24 @@ class _BhagavadGitaState extends State<BhagavadGita> {
   }
 }
 
-Widget adhyay(String i1, String a1, String n1) {
+Widget adhyay(String i1, String a1, String n1,BuildContext context) {
+  double height = MediaQuery.of(context).size.height;
+  double width = MediaQuery.of(context).size.height;
   return Padding(
     padding: const EdgeInsets.only(
       top: 10,
       bottom: 10
     ),
     child: Container(
-      height: 100,
-      width: 330,
+      height: height/8.5,
+      width: width/2.5,
       decoration: BoxDecoration(
           color: Colors.orangeAccent, borderRadius: BorderRadius.circular(20)),
       child: Row(
         children: [
           Container(
-            width: 110,
-            height: 100,
+            width: height/8.2,
+            height: height/8.5,
             decoration: BoxDecoration(
               border: Border(
                 right: BorderSide(color: Colors.white,),
@@ -137,8 +142,8 @@ Widget adhyay(String i1, String a1, String n1) {
             child: Image.asset(i1),
           ),
           Container(
-            width: 220,
-            height: 110,
+            width: width/3.6,
+            height: height/8.5,
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -156,7 +156,6 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Container(
                                 width: width / 3.9,
-                                height: 110,
                                 alignment: Alignment.center,
                                 child: Text(
                                   'गीता सार',

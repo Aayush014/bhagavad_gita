@@ -1,21 +1,17 @@
 import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../Utils/global.dart';
 
 
-class ShlokScreen extends StatefulWidget {
-  const ShlokScreen({super.key});
+class AdhyayScreen extends StatefulWidget {
+  const AdhyayScreen({super.key});
 
   @override
-  State<ShlokScreen> createState() => _ShlokScreenState();
+  State<AdhyayScreen> createState() => _AdhyayScreenState();
 }
+int adhyayIndex = 0;
 
-int shlokIndex = 0;
-
-class _ShlokScreenState extends State<ShlokScreen> {
+class _AdhyayScreenState extends State<AdhyayScreen> {
 
 
   @override
@@ -74,9 +70,9 @@ class _ShlokScreenState extends State<ShlokScreen> {
           SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 230,),
+                SizedBox(height: height/4,),
                 Container(
-                  width: 450,
+                  width: width,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(14),
@@ -86,14 +82,14 @@ class _ShlokScreenState extends State<ShlokScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Container(
-                          width: 450,
+                          width: width,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Column(
                             children: List.generate(
-                              data[0]['Bhaags'][shlokIndex]['shloks'].length,
-                                  (index) => buildContainer(index),
+                              data[0]['adhyay'][adhyayIndex]['shloks'].length,
+                                  (index) => buildContainer(index,context),
                             ),
                           ),
                         ),
@@ -110,7 +106,9 @@ class _ShlokScreenState extends State<ShlokScreen> {
   }
 }
 
-Container buildContainer(int index) {
+Widget buildContainer(int index,BuildContext context) {
+  double height = MediaQuery.of(context).size.height;
+  double width = MediaQuery.of(context).size.height;
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
     decoration: const BoxDecoration(
@@ -123,7 +121,7 @@ Container buildContainer(int index) {
           Padding(
             padding: const EdgeInsets.all(5),
             child: Text(
-              data[0]['Bhaags'][shlokIndex]['id'],
+              data[0]['adhyay'][adhyayIndex]['id'],
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
@@ -133,7 +131,7 @@ Container buildContainer(int index) {
           ),
         if (index == 0)
           Text(
-            data[0]['Bhaags'][shlokIndex]['name'],
+            data[0]['adhyay'][adhyayIndex]['name'],
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w400,
@@ -143,7 +141,7 @@ Container buildContainer(int index) {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            data[0]['Bhaags'][shlokIndex]['shloks'][index]['shlok'],
+            data[0]['adhyay'][adhyayIndex]['shloks'][index]['shlok'],
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w400,
@@ -155,7 +153,7 @@ Container buildContainer(int index) {
         Padding(
           padding: const EdgeInsets.all(10),
           child: Text(
-            data[0]['Bhaags'][shlokIndex]['shloks'][index]['meaning'],
+            data[0]['adhyay'][adhyayIndex]['shloks'][index]['meaning'],
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 22,
@@ -165,8 +163,8 @@ Container buildContainer(int index) {
           ),
         ),
         Container(
-          height: 40,
-          width: 455,
+          height: height/20,
+          width: width,
           decoration: const BoxDecoration(
             color: Color(0xFF2F2D32),
             borderRadius: BorderRadius.only(

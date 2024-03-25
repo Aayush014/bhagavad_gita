@@ -18,14 +18,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //initialRoute: 'gArti',
       routes: {
-        '/' : (context) => HomePage(),
-        'gita1' : (context) => BhagavadGita(),
-        'gSar' : (context) => GitasaarScreen(),
-        'gArti' : (context) => GitaArtiScreen(),
-        'gMahatmya' : (context) => GitaMahatmyaScreen(),
-        'shlok' : (context) => ShlokScreen(),
+        '/': (context) => HomePage(),
+        'gita1': (context) => BhagavadGita(),
+        'adhyay': (context) => AdhyayScreen(),
+        'gSar': (context) => GitasarScreen(),
+        'gMahatmya': (context) => GitaMahatmyaScreen(),
+        'gArti': (context) => GitaArtiScreen(),
       },
     );
   }

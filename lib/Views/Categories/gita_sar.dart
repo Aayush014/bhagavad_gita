@@ -1,24 +1,21 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../Utils/global.dart';
 
-class GitasaarScreen extends StatefulWidget {
-  const GitasaarScreen({super.key});
+class GitasarScreen extends StatefulWidget {
+  const GitasarScreen({super.key});
 
   @override
-  State<GitasaarScreen> createState() => _GitasaarScreenState();
+  State<GitasarScreen> createState() => _GitasarScreenState();
 }
 
-class _GitasaarScreenState extends State<GitasaarScreen> {
-
+class _GitasarScreenState extends State<GitasarScreen> {
   int index = 0;
 
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -65,8 +62,8 @@ class _GitasaarScreenState extends State<GitasaarScreen> {
                     left: 110,
                     child: Text(
                       '॥ गीता ॥',
-                      style: TextStyle(
-                          fontSize: 50, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 50, fontWeight: FontWeight.w600),
                     ),
                   ),
                 ],
@@ -76,12 +73,12 @@ class _GitasaarScreenState extends State<GitasaarScreen> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 180,
+                    height: height / 4,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     child: Container(
-                      width: 400,
+                      width: width,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(14),
@@ -89,16 +86,17 @@ class _GitasaarScreenState extends State<GitasaarScreen> {
                       child: Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 20, horizontal: 10),
                             child: Container(
-                              width: 380,
+                              width: width,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Column(
                                 children: List.generate(
-                                  data[1]['bhaags'].length,
-                                      (index) => buildContainer(index),
+                                  data[1]['adhyay'].length,
+                                  (index) => buildContainer(index, context),
                                 ),
                               ),
                             ),
@@ -115,50 +113,52 @@ class _GitasaarScreenState extends State<GitasaarScreen> {
       ),
     );
   }
-  Widget buildContainer(int index) {
-    double height = MediaQuery.of(context).size.height;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Container(
-          padding: EdgeInsets.all(10),
-          width: double.infinity,
-          decoration: BoxDecoration(
-              color: Colors.orangeAccent,
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-              border: Border(bottom: BorderSide(width: 10))),
-          child: Column(
-            children: [
-              Text(
-                data[1]['bhaags'][index]['id'],
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: height / 55,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ),
+}
+
+Widget buildContainer(int index, BuildContext context) {
+  double height = MediaQuery.of(context).size.height;
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 5),
+    child: Container(
+      padding: EdgeInsets.all(10),
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.orangeAccent,
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          border: Border(bottom: BorderSide(width: 10))),
+      child: Column(
+        children: [
+          Text(
+            data[1]['adhyay'][index]['id'],
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: height / 55,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Text(
+              data[1]['adhyay'][index]['name'],
+              style: TextStyle(
+                fontSize: height / 40,
+                fontWeight: FontWeight.w300,
+                color: Colors.black,
               ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text(
-                  data[1]['bhaags'][index]['name'],
-                  style: TextStyle(
-                    fontSize: height / 40,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              Text(
-                data[1]['bhaags'][index]['meaning'],
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ),
-              ),
-            ],
-          )),
-    );
-  }
+            ),
+          ),
+          Text(
+            data[1]['adhyay'][index]['meaning'],
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }
