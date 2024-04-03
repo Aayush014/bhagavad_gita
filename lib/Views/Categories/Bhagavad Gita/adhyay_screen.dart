@@ -1,10 +1,10 @@
 import 'dart:math';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
-import '../../../Utils/global.dart';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
+
+import '../../../Utils/global.dart';
 
 class AdhyayScreen extends StatefulWidget {
   const AdhyayScreen({super.key});
@@ -12,16 +12,16 @@ class AdhyayScreen extends StatefulWidget {
   @override
   State<AdhyayScreen> createState() => _AdhyayScreenState();
 }
+
 int adhyayIndex = 0;
 
 class _AdhyayScreenState extends State<AdhyayScreen> {
-
-
   @override
   void initState() {
     // TODO: implement initState
 
-    imgKeyList = List.generate(data[0]['adhyay'][adhyayIndex]['shloks'].length, (index) {
+    imgKeyList =
+        List.generate(data[0]['adhyay'][adhyayIndex]['shloks'].length, (index) {
       GlobalKey globalKey = GlobalKey();
       return globalKey;
     });
@@ -47,7 +47,7 @@ class _AdhyayScreenState extends State<AdhyayScreen> {
       body: Stack(
         children: [
           Container(
-            height: height/3,
+            height: height / 3,
             width: width,
             decoration: BoxDecoration(
               color: Colors.grey,
@@ -61,10 +61,10 @@ class _AdhyayScreenState extends State<AdhyayScreen> {
             child: Stack(
               children: [
                 Positioned(
-                  left : 150,
+                  left: 150,
                   child: Transform.rotate(
                     child: Container(
-                      height: height/4,
+                      height: height / 4,
                       child: Image.asset('Assets/Images/mor_pankh.png'),
                     ),
                     angle: pi / 4,
@@ -75,8 +75,7 @@ class _AdhyayScreenState extends State<AdhyayScreen> {
                   left: 110,
                   child: Text(
                     '॥ गीता ॥',
-                    style: TextStyle(
-                        fontSize: 50, fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.w600),
                   ),
                 ),
               ],
@@ -85,7 +84,9 @@ class _AdhyayScreenState extends State<AdhyayScreen> {
           SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: height/4,),
+                SizedBox(
+                  height: height / 4,
+                ),
                 Container(
                   width: width,
                   decoration: BoxDecoration(
@@ -104,7 +105,7 @@ class _AdhyayScreenState extends State<AdhyayScreen> {
                           child: Column(
                             children: List.generate(
                               data[0]['adhyay'][adhyayIndex]['shloks'].length,
-                                  (index) => buildContainer(index,context),
+                              (index) => buildContainer(index, context),
                             ),
                           ),
                         ),
@@ -121,7 +122,7 @@ class _AdhyayScreenState extends State<AdhyayScreen> {
   }
 }
 
-Widget buildContainer(int index,BuildContext context) {
+Widget buildContainer(int index, BuildContext context) {
   double height = MediaQuery.of(context).size.height;
   double width = MediaQuery.of(context).size.height;
   return Column(
@@ -181,13 +182,12 @@ Widget buildContainer(int index,BuildContext context) {
                   ),
                 ),
               ),
-
             ],
           ),
         ),
       ),
       Container(
-        height: height/20,
+        height: height / 20,
         width: width,
         decoration: const BoxDecoration(
           color: Color(0xFF2F2D32),
@@ -196,19 +196,31 @@ Widget buildContainer(int index,BuildContext context) {
             bottomRight: Radius.circular(5),
           ),
         ),
-        child:  Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
-              'Copy',
-              style: TextStyle(
-                  color: Colors.amber,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
+            GestureDetector(
+              onTap: () {
+                Clipboard.setData(ClipboardData(
+                    text:
+                        '${data[0]['adhyay'][adhyayIndex]['shloks'][index]['shlok']} ${data[0]['adhyay'][adhyayIndex]['shloks'][index]['meaning']}'));
+              },
+              child: Text(
+                'Copy',
+                style: TextStyle(
+                    color: Colors.amber,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600),
+              ),
             ),
             InkWell(
               onTap: () {
-                ShareFilesAndScreenshotWidgets().shareScreenshot(imgKeyList[index], 500, "Bhagavad Gita", "Bhagavad Gita.png", "image/png");
+                ShareFilesAndScreenshotWidgets().shareScreenshot(
+                    imgKeyList[index],
+                    500,
+                    "Bhagavad Gita",
+                    "Bhagavad Gita.png",
+                    "image/png");
               },
               child: Text(
                 'Share',
@@ -224,5 +236,6 @@ Widget buildContainer(int index,BuildContext context) {
     ],
   );
 }
-GlobalKey imgKey =GlobalKey();
+
+GlobalKey imgKey = GlobalKey();
 List<GlobalKey> imgKeyList = [];
