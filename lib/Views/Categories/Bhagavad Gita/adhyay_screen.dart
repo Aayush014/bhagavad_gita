@@ -1,5 +1,8 @@
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
 import '../../../Utils/global.dart';
 
 
@@ -13,6 +16,18 @@ int adhyayIndex = 0;
 
 class _AdhyayScreenState extends State<AdhyayScreen> {
 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    imgKeyList = List.generate(data[0]['adhyay'][adhyayIndex]['shloks'].length, (index) {
+      GlobalKey globalKey = GlobalKey();
+      return globalKey;
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,90 +124,105 @@ class _AdhyayScreenState extends State<AdhyayScreen> {
 Widget buildContainer(int index,BuildContext context) {
   double height = MediaQuery.of(context).size.height;
   double width = MediaQuery.of(context).size.height;
-  return Container(
-    margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-    decoration: const BoxDecoration(
-      color: Colors.orangeAccent,
-      borderRadius: BorderRadius.all(Radius.circular(8)),
-    ),
-    child: Column(
-      children: [
-        if (index == 0)
-          Padding(
-            padding: const EdgeInsets.all(5),
-            child: Text(
-              data[0]['adhyay'][adhyayIndex]['id'],
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: const Color(0xFF2E2E2E),
-              ),
-            ),
-          ),
-        if (index == 0)
-          Text(
-            data[0]['adhyay'][adhyayIndex]['name'],
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w400,
-              color: const Color(0xFF2E2E2E),
-            ),
-          ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Text(
-            data[0]['adhyay'][adhyayIndex]['shloks'][index]['shlok'],
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w400,
-              color: const Color(0xFF2E2E2E),
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: Text(
-            data[0]['adhyay'][adhyayIndex]['shloks'][index]['meaning'],
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w400,
-              color: const Color(0xFF2E2E2E),
-            ),
-          ),
-        ),
-        Container(
-          height: height/20,
-          width: width,
+  return Column(
+    children: [
+      RepaintBoundary(
+        key: imgKeyList[index],
+        child: Container(
+          margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
           decoration: const BoxDecoration(
-            color: Color(0xFF2F2D32),
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(5),
-              bottomRight: Radius.circular(5),
-            ),
+            color: Colors.orangeAccent,
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Column(
             children: [
-              Text(
-                'Copy',
-                style: TextStyle(
-                    color: Colors.amber,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
+              if (index == 0)
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Text(
+                    data[0]['adhyay'][adhyayIndex]['id'],
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                      color: const Color(0xFF2E2E2E),
+                    ),
+                  ),
+                ),
+              if (index == 0)
+                Text(
+                  data[0]['adhyay'][adhyayIndex]['name'],
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xFF2E2E2E),
+                  ),
+                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Text(
+                  data[0]['adhyay'][adhyayIndex]['shloks'][index]['shlok'],
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xFF2E2E2E),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              Text(
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  data[0]['adhyay'][adhyayIndex]['shloks'][index]['meaning'],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xFF2E2E2E),
+                  ),
+                ),
+              ),
+
+            ],
+          ),
+        ),
+      ),
+      Container(
+        height: height/20,
+        width: width,
+        decoration: const BoxDecoration(
+          color: Color(0xFF2F2D32),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(5),
+            bottomRight: Radius.circular(5),
+          ),
+        ),
+        child:  Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'Copy',
+              style: TextStyle(
+                  color: Colors.amber,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600),
+            ),
+            InkWell(
+              onTap: () {
+                ShareFilesAndScreenshotWidgets().shareScreenshot(imgKeyList[index], 500, "Bhagavad Gita", "Bhagavad Gita.png", "image/png");
+              },
+              child: Text(
                 'Share',
                 style: TextStyle(
                     color: Colors.amber,
                     fontSize: 20,
                     fontWeight: FontWeight.w600),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ],
-    ),
+      ),
+    ],
   );
 }
+GlobalKey imgKey =GlobalKey();
+List<GlobalKey> imgKeyList = [];

@@ -4966,5 +4966,3 @@ List<dynamic> data = [
     ]
   },
 ];
-
-
