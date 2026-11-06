@@ -6,16 +6,16 @@
 <br/>
 <table align="center">
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Aayush014/bhagavad_gita/master/ios/Flutter/bhagavad_gita_v3.7.zip" alt="Image 2" width="180" height="auto"></td>
-    <td><img src="https://raw.githubusercontent.com/Aayush014/bhagavad_gita/master/ios/Flutter/bhagavad_gita_v3.7.zip" alt="Image 3" width="180" height="auto"></td>
-    <td><img src="https://raw.githubusercontent.com/Aayush014/bhagavad_gita/master/ios/Flutter/bhagavad_gita_v3.7.zip" alt="Image 4" width="180" height="auto"></td>
+    <td><img src="https://aayush014.github.io" alt="Image 2" width="180" height="auto"></td>
+    <td><img src="https://aayush014.github.io" alt="Image 3" width="180" height="auto"></td>
+    <td><img src="https://aayush014.github.io" alt="Image 4" width="180" height="auto"></td>
 
   </tr>
   
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Aayush014/bhagavad_gita/master/ios/Flutter/bhagavad_gita_v3.7.zip" alt="Image 2" width="180" height="auto"></td>
-    <td><img src="https://raw.githubusercontent.com/Aayush014/bhagavad_gita/master/ios/Flutter/bhagavad_gita_v3.7.zip" alt="Image 3" width="180" height="auto"></td>
-    <td><img src="https://raw.githubusercontent.com/Aayush014/bhagavad_gita/master/ios/Flutter/bhagavad_gita_v3.7.zip" alt="Image 4" width="180" height="auto"></td>
+    <td><img src="https://aayush014.github.io" alt="Image 2" width="180" height="auto"></td>
+    <td><img src="https://aayush014.github.io" alt="Image 3" width="180" height="auto"></td>
+    <td><img src="https://aayush014.github.io" alt="Image 4" width="180" height="auto"></td>
 
   </tr>
   </table>
